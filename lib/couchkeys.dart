@@ -5,12 +5,29 @@ import 'package:couchkeys/text_key.dart';
 import 'package:flutter/material.dart';
 
 class Couchkeys extends StatefulWidget {
+  /// Callback triggered on key press
   final ValueChanged<String>? onChanged;
+  /// Controls the text being edited.
+  ///
+  /// If null, this widget will create its own [TextEditingController].
   final TextEditingController? controller;
+  /// Defines a custom layout for the keyboard.
+  ///
+  /// If null, a default layout will be used.
   final List<List<TextKey>>? customLayout;
+  /// The height of the keyboard.
   final double? keyboardHeight;
+  /// Transforms the text before it is inserted into the controller for advanced functionality.
   final String? Function(String? incomingValue)? textTransformer;
 
+  /// Creates a new instance of [Couchkeys].
+  /// Example:
+  /// ```dart
+  /// Couchkeys(
+  ///   controller: controller,
+  ///   keyboardHeight: 200,
+  /// )
+  /// ```
   const Couchkeys({
     super.key,
     this.onChanged,
@@ -21,10 +38,10 @@ class Couchkeys extends StatefulWidget {
   });
 
   @override
-  CouchkeysState createState() => CouchkeysState();
+  State<Couchkeys> createState() => _CouchkeysState();
 }
 
-class CouchkeysState extends State<Couchkeys> {
+class _CouchkeysState extends State<Couchkeys> {
   TextEditingController? _controller;
   late final List<List<TextKey>> _keyLayout;
 
@@ -35,7 +52,6 @@ class CouchkeysState extends State<Couchkeys> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: widget.keyboardHeight ?? 170,
-      // color: Colors.transparent,
       child: Column(
         children: [
           for (final row in _keyLayout)
@@ -141,15 +157,6 @@ class CouchkeysState extends State<Couchkeys> {
 
   void onChangedCallback() => widget.onChanged?.call(effectiveController.text);
 
-  // Widget _buildRowOfStrings(List<String> keys) {
-  //   return _buildRowOfWidgets(keys
-  //       .map((key) => TextKey(
-  //             text: key,
-  //             onTap: _textInputHandler,
-  //           ))
-  //       .toList());
-  // }
-
   Widget _buildRowOfWidgets(List<TextKey> keys) {
     return Expanded(
       child: Row(
@@ -165,19 +172,19 @@ class CouchkeysState extends State<Couchkeys> {
         : TextEditingController.fromValue(value);
   }
 
-  void _clearHandler([String? _]) {
+  void _clearHandler() {
     effectiveController.text = "";
     onChangedCallback();
   }
 
-  void _spaceHandler([String? _]) {
+  void _spaceHandler() {
     if (effectiveController.text != "") {
       effectiveController.text = "${effectiveController.text.trim()} ";
     }
     onChangedCallback();
   }
 
-  void _backspaceHandler([String? _]) {
+  void _backspaceHandler() {
     if (effectiveController.text.isNotEmpty) {
       effectiveController.text = effectiveController.text
           .substring(0, effectiveController.text.length - 1);

@@ -1,35 +1,63 @@
-import 'package:flutter/material.dart';
+library couchkeys;
+
 import 'package:couchkeys/keyboard_action.dart';
+import 'package:flutter/material.dart';
 
 class TextKey extends StatefulWidget {
+  /// The text to display on the key.
+  final String? label;
+  /// The icon to display on the key.
+  final IconData? icon;
+  /// The action to perform when the key is pressed.
+  /// Takes a [KeyboardAction] as an argument, which is one of the following:
+  /// - [InsertAction(String)]
+  /// - [BackspaceAction]
+  /// - [SpaceAction]
+  /// - [ClearAction]
+  final KeyboardAction? action;
+  /// Callback triggered on key press to set custom behavior. Not required if [action] is set.
+  final ValueSetter<KeyboardAction?>? onTap;
+  /// Expands the key to fill the available space.
+  /// Default is 1.
+  final int flex;
+  /// The background color of the key.
+  /// Takes a [WidgetStateColor] as an argument, which is a function that takes a set of [WidgetState]s and returns a [Color].
+  /// Default is white when focused, black with 100 alpha otherwise.
+  final WidgetStateColor? color;
+  /// The text color of the key.
+  /// Takes a [WidgetStateColor] as an argument, which is a function that takes a set of [WidgetState]s and returns a [Color].
+  /// Default is black when focused, white otherwise.
+  final WidgetStateColor? foregroundColor;
+
+  /// Creates a new instance of [TextKey].
+  /// Either [label] or [icon] must be specified.
+  /// Example:
+  /// ```dart
+  /// TextKey(
+  ///   label: 'A',
+  ///   action: InsertAction('A'),
+  /// )
+  /// ```
   const TextKey({
     super.key,
     this.label,
     this.icon,
     this.onTap,
-    required this.action,
+    this.action,
     this.flex = 1,
     this.color,
     this.foregroundColor,
   })  : assert(
           icon != null || label != null,
-          "Either icon or text must be specified",
+          "Either icon or label must be specified",
         ),
         super();
 
-  final String? label;
-  final IconData? icon;
-  final KeyboardAction action;
-  final ValueSetter<KeyboardAction>? onTap;
-  final int flex;
-  final WidgetStateColor? color;
-  final WidgetStateColor? foregroundColor;
-
   @override
-  TextKeyState createState() => TextKeyState();
+  State<TextKey> createState() => _TextKeyState();
 }
 
-class TextKeyState extends State<TextKey> with TickerProviderStateMixin {
+class _TextKeyState extends State<TextKey> {
   late FocusNode _node;
   late Color _primaryColor;
   late Color _textColor;
@@ -47,42 +75,6 @@ class TextKeyState extends State<TextKey> with TickerProviderStateMixin {
         (states) =>
             states.contains(WidgetState.focused) ? Colors.black : Colors.white,
       );
-
-  @override
-  void initState() {
-    _primaryColor = color.resolve({});
-    _textColor = foregroundColor.resolve({});
-
-    _node = FocusNode();
-    _node.addListener(_onFocusChange);
-
-    super.initState();
-  }
-
-  void _onFocusChange() {
-    if (_node.hasFocus) {
-      setState(() {
-        _primaryColor = color.resolve({WidgetState.focused});
-        _textColor = foregroundColor.resolve({WidgetState.focused});
-      });
-    } else {
-      setState(() {
-        _primaryColor = color.resolve({});
-        _textColor = foregroundColor.resolve({});
-      });
-    }
-  }
-
-  void _onTap() {
-    _node.requestFocus();
-    widget.onTap?.call(widget.action);
-  }
-
-  @override
-  void dispose() {
-    _node.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,5 +110,41 @@ class TextKeyState extends State<TextKey> with TickerProviderStateMixin {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _node.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _primaryColor = color.resolve({});
+    _textColor = foregroundColor.resolve({});
+
+    _node = FocusNode();
+    _node.addListener(_onFocusChange);
+
+    super.initState();
+  }
+
+  void _onFocusChange() {
+    if (_node.hasFocus) {
+      setState(() {
+        _primaryColor = color.resolve({WidgetState.focused});
+        _textColor = foregroundColor.resolve({WidgetState.focused});
+      });
+    } else {
+      setState(() {
+        _primaryColor = color.resolve({});
+        _textColor = foregroundColor.resolve({});
+      });
+    }
+  }
+
+  void _onTap() {
+    _node.requestFocus();
+    widget.onTap?.call(widget.action);
   }
 }
