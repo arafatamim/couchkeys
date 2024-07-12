@@ -1,3 +1,6 @@
+## 0.2.0
+* Restructuring package layout
+
 ## 0.1.0
 * Private state objects.
 

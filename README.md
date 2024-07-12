@@ -24,7 +24,7 @@ Inspired by the YouTube app for Android TV.
 Add this to your `pubspec.yaml` file:
 ```yaml
 dependencies:
-  couchkeys: ^0.1.0
+  couchkeys: ^0.2.0
 ```
 Then run:
 ```sh
