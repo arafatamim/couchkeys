@@ -1,8 +1,6 @@
 // Builds a custom Couchkeys number pad
 
 import 'package:couchkeys/couchkeys.dart';
-import 'package:couchkeys/keyboard_action.dart';
-import 'package:couchkeys/text_key.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -116,7 +114,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             content: Text("Submitted: ${controller.text}"),
                           ),
                         );
-
                       },
                     )
                   ],

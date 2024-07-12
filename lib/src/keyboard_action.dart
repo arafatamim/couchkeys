@@ -1,5 +1,3 @@
-library couchkeys;
-
 sealed class KeyboardAction {}
 
 class InsertAction extends KeyboardAction {

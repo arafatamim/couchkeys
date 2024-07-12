@@ -1,13 +1,13 @@
-library couchkeys;
-
-import 'package:couchkeys/keyboard_action.dart';
+import 'package:couchkeys/couchkeys.dart';
 import 'package:flutter/material.dart';
 
 class TextKey extends StatefulWidget {
   /// The text to display on the key.
   final String? label;
+
   /// The icon to display on the key.
   final IconData? icon;
+
   /// The action to perform when the key is pressed.
   /// Takes a [KeyboardAction] as an argument, which is one of the following:
   /// - [InsertAction(String)]
@@ -15,15 +15,19 @@ class TextKey extends StatefulWidget {
   /// - [SpaceAction]
   /// - [ClearAction]
   final KeyboardAction? action;
+
   /// Callback triggered on key press to set custom behavior. Not required if [action] is set.
   final ValueSetter<KeyboardAction?>? onTap;
+
   /// Expands the key to fill the available space.
   /// Default is 1.
   final int flex;
+
   /// The background color of the key.
   /// Takes a [WidgetStateColor] as an argument, which is a function that takes a set of [WidgetState]s and returns a [Color].
   /// Default is white when focused, black with 100 alpha otherwise.
   final WidgetStateColor? color;
+
   /// The text color of the key.
   /// Takes a [WidgetStateColor] as an argument, which is a function that takes a set of [WidgetState]s and returns a [Color].
   /// Default is black when focused, white otherwise.
