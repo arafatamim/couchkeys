@@ -1,7 +1,7 @@
 name: couchkeys
 description: Customizable virtual keyboard for D-pads
 version: 0.0.1
-homepage:
+repository: https://github.com/arafatamim/couchkeys
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
