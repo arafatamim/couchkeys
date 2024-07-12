@@ -1,6 +1,7 @@
 # couchkeys
 
-[![Pub](https://img.shields.io/pub/v/couchkeys.svg)](https://pub.dartlang.org/packages/couchkeys)
+[![Pub Package](https://img.shields.io/pub/v/couchkeys.svg)](https://pub.dartlang.org/packages/couchkeys)
+[![Pub Points](https://img.shields.io/pub/points/couchkeys?color=2E8B57&label=pub%20points)](https://pub.dev/packages/couchkeys/score)
 
 A customizable virtual keyboard package for Flutter applications, specifically designed for
 use with D-pad navigation on devices like smart TVs and set-top boxes.
