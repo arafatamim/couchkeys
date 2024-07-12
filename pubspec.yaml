@@ -1,6 +1,6 @@
 name: couchkeys
 description: Customizable virtual keyboard designed for use with D-pads (like Android TV)
-version: 0.0.1
+version: 0.1.0
 repository: https://github.com/arafatamim/couchkeys
 
 environment:

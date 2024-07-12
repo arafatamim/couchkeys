@@ -76,7 +76,6 @@ class _CouchkeysState extends State<Couchkeys> {
                           case SpaceAction():
                             _spaceHandler();
                             break;
-
                           default:
                         }
                       },
