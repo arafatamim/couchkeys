@@ -4,9 +4,9 @@ import 'package:couchkeys/couchkeys.dart';
 import 'package:flutter/material.dart';
 
 /// A customizable virtual keyboard.
-/// It provides a simple interface for creating a custom keyboard layout. The keyboard can be customized with a custom layout, button style, and height.
+/// The keyboard can be customized with a custom layout, button style, and height.
 ///
-/// The keyboard is built around [KeyboardKey] widgets, which are used to define the layout of the keyboard. It is designed to be used in conjunction with a [TextEditingController].
+/// The keyboard is built around [KeyboardKey] widgets, which are used to define its layout. It is designed to be used in conjunction with a [TextEditingController].
 class Couchkeys extends StatefulWidget {
   /// Callback triggered when the text changes.
   final ValueChanged<String>? onChanged;
