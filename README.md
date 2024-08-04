@@ -10,9 +10,6 @@ Inspired by the YouTube app for Android TV.
 
 ![image](https://github.com/user-attachments/assets/70ccf2c0-2dbc-4677-aad1-3aac8a4d0ad2)
 
-> [!WARNING]
-> This package is currently in an early development stage and is not considered stable. It may contain bugs, incomplete features, or undergo significant changes in future releases. Use it at your own risk in production environments.
-
 ## Features
 
 - Fully customizable keyboard layout
@@ -24,7 +21,7 @@ Inspired by the YouTube app for Android TV.
 Add this to your `pubspec.yaml` file:
 ```yaml
 dependencies:
-  couchkeys: ^0.2.0
+  couchkeys: ^1.0.0
 ```
 Then run:
 ```sh
