@@ -67,47 +67,47 @@ class _MyHomePageState extends State<MyHomePage> {
               customLayout: [
                 ["1", "2", "3", "-"]
                     .map(
-                      (v) => TextKey(
-                        label: v,
+                      (v) => KeyboardKey(
                         action: InsertAction(v),
+                        child: Text(v),
                       ),
                     )
                     .toList(),
                 ["4", "5", "6"]
-                    .map((v) => TextKey(
-                          label: v,
+                    .map((v) => KeyboardKey(
                           action: InsertAction(v),
+                          child: Text(v),
                         ))
                     .followedBy(
                   [
-                    TextKey(
-                      label: "␣",
+                    KeyboardKey(
                       action: SpaceAction(),
+                      child: const Icon(Icons.space_bar),
                     )
                   ],
                 ).toList(),
                 ["7", "8", "9"]
-                    .map((v) => TextKey(
-                          label: v,
+                    .map((v) => KeyboardKey(
                           action: InsertAction(v),
+                          child: Text(v),
                         ))
                     .followedBy(
                   [
-                    TextKey(
-                      label: "⌫",
+                    KeyboardKey(
                       action: BackspaceAction(),
+                      child: const Icon(Icons.backspace),
                     )
                   ],
                 ).toList(),
                 [".", "0", ","]
-                    .map((v) => TextKey(
-                          label: v,
+                    .map((v) => KeyboardKey(
                           action: InsertAction(v),
+                          child: Text(v),
                         ))
                     .followedBy(
                   [
-                    TextKey(
-                      label: "↵",
+                    KeyboardKey(
+                      child: const Icon(Icons.keyboard_return),
                       onTap: (_) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
