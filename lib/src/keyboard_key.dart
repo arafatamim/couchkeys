@@ -45,7 +45,7 @@ class KeyboardKey extends StatefulWidget {
   /// Creates a new instance of [KeyboardKey]. [child] must be specified.
   /// Example:
   /// ```dart
-  /// TextKey(
+  /// KeyboardKey(
   ///   action: InsertAction('a'),
   ///   child: const Text('A'),
   /// )
